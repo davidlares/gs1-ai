@@ -1,0 +1,32 @@
+{
+    "name": "davidlares/gs1-ai",
+    "description": "A GS1 Application identifier online wrapper",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David E Lares S",
+            "email": "david.e.lares@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Davidlares\\GS1\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Davidlares\\GS1\\GS1AIServiceProvider"
+            ],
+            "aliases": {
+                "Identifier": "Davidlares\\GS1\\Facades\\Identifier"
+            }
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^10.0|^11.0|^12.0"
+    },
+    "minimum-stability": "stable"
+}

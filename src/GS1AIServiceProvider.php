@@ -1,0 +1,41 @@
+<?php 
+
+namespace Davidlares\GS1;
+
+use Davidlares\GS1\Services\IdentifierInterface;
+use Davidlares\GS1\Contracts\ClientInterface;
+use Davidlares\GS1\Console\InstallCommand;
+use Illuminate\Support\ServiceProvider;
+use Davidlares\GS1\Client\GS1Client;
+
+class GS1AIServiceProvider extends ServiceProvider 
+{
+    /**
+     * Register services.
+     */
+    public function register(): void
+    {
+        // Merge package defaults with any published config
+        $this->mergeConfigFrom(__DIR__. '/../config/gs1.php', 'gs1');
+        // client as singleton
+        $this->app->singleton(ClientInterface::class, function($app) {
+            return new GS1Client(config('gs1.api_url'));
+        });
+        // identifier interface as singleton
+        $this->app->singleton(IdentifierInterface::class); 
+        // main class
+        $this->app->singleton(GS1AI::class);
+    }
+
+    /**
+     * Bootstrap services.
+     */
+    public function boot(): void
+    {   
+        // registering command (used only for config file)
+        if($this->app->runningInConsole()) 
+            $this->commands([InstallCommand::class]);
+        // config publishable
+        $this->publishes([__DIR__. '/../config/gs1.php' => config_path('gs1.php')], 'gs1-config');
+    }
+}
