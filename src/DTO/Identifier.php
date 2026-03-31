@@ -35,9 +35,25 @@ class Identifier
     // Some public methods (public intended methods)
 
     /**
+     * Contain Digital link qualifiers
+     */
+    public function containDigitalLinkQualifiers() : bool 
+    {
+        return $this->qualifiers->count() > 0;
+    }
+
+    /**
+     * Number of validations found
+     */
+    public function amountOfvalidators() : int 
+    {
+        return $this->validations->count();
+    }
+
+    /**
      * Displaying if contain separator
      */
-    public function containSeparator() : boolean
+    public function containSeparator() : bool
     {
         return $this->general->separator;
     }

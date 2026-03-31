@@ -22,4 +22,20 @@ class Qualifier
         // determining flat array 
         return is_array($data) ? new self($data, true) : new self([$data], false);
     }
+
+    /**
+     * Showing associated AIs
+     */
+    public function ais() : ?array
+    {
+        return $this->ais ?? [];
+    }
+
+    /**
+     * Belongs to a group
+     */
+    public function belongsToGroup() : bool 
+    {
+        return $this->isGroup;
+    }
 }

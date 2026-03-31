@@ -11,6 +11,9 @@ class Validations extends Collection
      */
     public static function fromArray(array $data) : self 
     { 
+        if(empty($data))
+            return new self();
+        // or
         return new self(
             collect($data ?? [])
                 ->map(fn ($item) => Validation::fromArray($item))
