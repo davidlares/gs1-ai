@@ -1,6 +1,6 @@
 {
     "name": "davidlares/gs1-ai",
-    "description": "A GS1 Application identifier online wrapper",
+    "description": "A GS1 Application identifier wrapper for Laravel",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -27,6 +27,15 @@
     "require": {
         "php": "^8.2",
         "illuminate/support": "^10.0|^11.0|^12.0"
+    },
+    
+    "require-dev": {
+        "orchestra/testbench": "^9.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Davidlares\\GS1\\Tests\\": "tests/"
+        }
     },
     "minimum-stability": "stable"
 }
