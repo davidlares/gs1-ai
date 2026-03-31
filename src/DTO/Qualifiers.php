@@ -2,16 +2,21 @@
 
 namespace Davidlares\GS1\DTO;
 
-class Qualifiers
-{
+use Illuminate\Support\Collection; 
+
+class Qualifiers extends Collection 
+{ 
     /** 
-     * Converting raw data to array
+     * Converting data into collection
      */
-    public static function fromArray($data)
-    {
-        if(!$data) 
-            return null;
-        // mapping for group associations
-        return array_map(fn ($group) => QualifiersGroup::fromArray($group), $data);
-    }
+    public static function fromArray(?array $data) : self 
+    { 
+        if(empty($data))
+            return new self();
+        // or
+        return new self(
+            collect($data ?? [])
+                ->map(fn ($item) => Qualifier::fromArray($item))
+        ); 
+    } 
 }

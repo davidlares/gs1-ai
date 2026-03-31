@@ -4,7 +4,7 @@ namespace Davidlares\GS1\DTO;
 
 use Illuminate\Support\Collection; 
 
-class Exclusions extends Collection 
+class Requirements extends Collection 
 { 
     /** 
      * Converting data into collection
@@ -16,7 +16,7 @@ class Exclusions extends Collection
         // or
         return new self(
             collect($data ?? [])
-                ->map(fn ($item) => Exclusion::fromArray($item))
+                ->map(fn ($item) => Requirement::fromArray($item))
         ); 
     } 
 }

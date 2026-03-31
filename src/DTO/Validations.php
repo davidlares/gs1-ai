@@ -2,21 +2,18 @@
 
 namespace Davidlares\GS1\DTO;
 
-class Validations
-{
+use Illuminate\Support\Collection; 
+
+class Validations extends Collection 
+{ 
     /** 
-     * Converting raw data to array
+     * Converting object into collection
      */
-    public static function fromArray($data)
-    {
-        return array_map(fn ($validation) => [
-            'fixedLength' => $validation['fixed_length'] ?? false,
-            'isOptional' => $validation['is_optional'] ?? false,
-            'checkDigit' => $validation['check_digit'] ?? false,
-            'key' => $validation['key'] ?? false,
-            'format' => $validation['format'] ?? null,
-            'length' => $validation['length'] ?? null,
-            'type' => isset($validation['type']) ? trim($validation['type']) : null
-        ], $data);
-    }
+    public static function fromArray(array $data) : self 
+    { 
+        return new self(
+            collect($data ?? [])
+                ->map(fn ($item) => Validation::fromArray($item))
+        ); 
+    } 
 }

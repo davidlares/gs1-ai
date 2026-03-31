@@ -26,7 +26,9 @@ class IdentifierService
         $key = "gs1.identifier.{$identifier}";
         // returning with cache
         return Cache::remember($key, config('gs1.cache_ttl'), function() use ($identifier) {
+            // requesting the identifier
             $data = $this->client->getIdentifier($identifier);
+            // returning with format
             return Identifier::fromArray($data);
         });
     }

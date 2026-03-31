@@ -1,0 +1,25 @@
+<?php 
+
+namespace Davidlares\GS1\DTO;
+
+class Exclusion
+{
+    /**
+     * Constructor
+     */
+    public function __construct(
+        public array $ais,
+        public bool $isGroup
+    ) {}
+    
+    /** 
+     * Converting raw data to array
+     */
+    public static function fromArray($data) : self
+    {
+        if(!$data) 
+            return null;
+        // determining flat array 
+        return is_array($data) ? new self($data, true) : new self([$data], false);
+    }
+}
