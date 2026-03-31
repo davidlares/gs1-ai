@@ -2,9 +2,24 @@
 
 This is a Laravel-based package designed to interact with an GS1 Application Identifiers API, providing structured DTOs, collections, and a rule-based engine for working with identifiers, validations, qualifiers, exclusions, and requirements.
 
----
+## What are GS1 Application Identifiers (AIs)?
 
-# Features
+GS1 Application Identifiers (AIs) are standardized numeric prefixes used in barcodes (like GS1-128, DataMatrix, QR codes) to define the meaning and format of the data that follows.
+
+For example: `(01)09506000134352`
+
+01 → AI (Global Trade Item Number - GTIN) and 09506000134352 → actual data
+
+Each AI defines:
+
+* What the data represents (e.g., product, batch, expiration date)
+* The expected format (numeric, alphanumeric, fixed/variable length)
+* Whether it requires validation (e.g., check digits)
+* How it interacts with other AIs 
+
+This package helps you consume, structure, and reason about this metadata programmatically.
+
+## Features
 
 * Clean DTO-based architecture
 * Laravel-friendly Collection support
@@ -19,9 +34,36 @@ This is a Laravel-based package designed to interact with an GS1 Application Ide
 * Extensible and testable design
 * Ready for caching & advanced parsing
 
----
+## Identifier general data
 
-# Installation
+This is the associated specification for the identifier, it basically describes the identifier itself.
+
+|             Field            |                 Meaning                 |
+|:----------------------------:|:---------------------------------------:|
+| ai                           | Application Identifier code             |
+| title                        | Short name                              |
+| description                  | Human-readable explanation              |
+| regex                        | Validation pattern                      |
+| separator                    | Whether FNC1 separator is required      |
+| is_gs1_digital_link_pk       | Can be used as Digital Link primary key |
+| is_valid_for_data_attributes | Can act as attribute                    |
+| note                         | Associated note to the identifier       |  
+
+## Validation data
+
+Defines how the data should be validated.
+
+|     Field    |                  Meaning                  |
+|:------------:|:-----------------------------------------:|
+| fixed_length | Must be exact length                      |
+| is_optional  | Field may be omitted                      |
+| check_digit  | Includes check digit                      |
+| key          | Primary key relevance                     |
+| format       | Special format rule                       |
+| length       | Expected length                           |
+| type         | Data type (N = numeric, X = alphanumeric) |
+
+## Installation
 
 Install via Composer:
 
@@ -29,9 +71,7 @@ Install via Composer:
 composer require davidlares/gs1-ai
 ```
 
----
-
-# Setup
+## Setup
 
 Run the install command:
 
@@ -45,9 +85,7 @@ This will publish the configuration file:
 config/gs1.php
 ```
 
----
-
-## Configuration
+### Configuration
 
 Add your API URL in `.env`:
 
@@ -55,9 +93,7 @@ Add your API URL in `.env`:
 GS1_AI_API_URL=https://ai.concilier.app/api
 ```
 
----
-
-# Basic Usage
+## Basic Usage
 
 ```php
 use Davidlares\GS1\DTO\Identifier;
@@ -65,9 +101,7 @@ use Davidlares\GS1\DTO\Identifier;
 $identifier = Identifier::find('01');
 ```
 
----
-
-## Accessing General Information
+### Accessing General Information
 
 ```php
 $identifier->ai();
@@ -77,18 +111,14 @@ $identifier->regex();
 $identifier->note();
 ```
 
----
-
-## Boolean Helpers
+### Boolean Helpers
 
 ```php
 $identifier->containSeparator();
 $identifier->containDigitalLinkQualifiers();
 ```
 
----
-
-## Validations
+### Validations
 
 ```php
 foreach ($identifier->validations as $validation) {
@@ -97,15 +127,13 @@ foreach ($identifier->validations as $validation) {
 }
 ```
 
-Helper:
+### Helpers
 
 ```php
 $identifier->amountOfvalidators();
 ```
 
----
-
-## Exclusions / Requirements / Qualifiers
+### Exclusions / Requirements / Qualifiers
 
 ```php
 foreach ($identifier->exclusions as $rule) {
@@ -114,20 +142,16 @@ foreach ($identifier->exclusions as $rule) {
 }
 ```
 
----
-
-# Concepts
-
----
-
 ## DTO (Data Transfer Objects)
 
 All API responses are converted into structured objects:
 
 * `Identifier`
 * `General`
-* `Validation`
-* `Exclusion` (and similar for rules)
+* `Validations`
+* `Exclusions` 
+* `Requirements` 
+* `Qualifiers` 
 
 This ensures:
 
@@ -135,9 +159,7 @@ This ensures:
 * Clean access (`->` instead of arrays)
 * Extensibility
 
----
-
-## Collections
+### Collections
 
 Array-based sections are converted into Laravel Collections:
 
@@ -155,9 +177,7 @@ $identifier->validations->count();
 $identifier->validations->first();
 ```
 
----
-
-## Rule Engine
+### Rule Engine
 
 Exclusions, Requirements, and Qualifiers are modeled as logical rules:
 
@@ -177,9 +197,7 @@ Meaning:
 02 OR (10 AND 21)
 ```
 
----
-
-# Architecture
+## Architecture
 
 ```
 Identifier
@@ -192,13 +210,9 @@ Identifier
  └── Qualifiers (Collection)
 ```
 
----
+## Core Classes
 
-# Core Classes
-
----
-
-## Identifier
+### Identifier
 
 Main entry point.
 
@@ -213,9 +227,7 @@ Main entry point.
 * `containDigitalLinkQualifiers()`
 * `amountOfvalidators()`
 
----
-
-## General
+### General
 
 Represents metadata of an identifier.
 
@@ -223,8 +235,6 @@ Represents metadata of an identifier.
 
 * `canBeDigitalLinkPK()`
 * `isValidForDataAttributes()`
-
----
 
 ## Validation
 
@@ -238,8 +248,6 @@ Represents a validation rule.
 * `length`
 * `type`
 
----
-
 ## Exclusion / Requirement / Qualifier
 
 Logical rule representation.
@@ -249,9 +257,7 @@ Logical rule representation.
 * `ais()` → returns involved AIs
 * `belongsToGroup()` → indicates AND grouping
 
----
-
-# Testing
+## Testing
 
 This package supports testing via:
 
@@ -263,11 +269,9 @@ Example setup:
 composer require --dev orchestra/testbench
 ```
 
----
+## Error Handling
 
-# Error Handling
-
-Custom exception:
+You can use the built-in Laravel exception for this
 
 Example:
 
@@ -281,8 +285,8 @@ try {
 
 ## Credits
 
-- Original Author: [David E Lares](https://davidlares.com/)
+[David Lares S](https://davidlares.com)
 
 ## License
 
-- [MIT License](https://opensource.org/licenses/MIT)
+[MIT](https://opensource.org/licenses/MIT)
