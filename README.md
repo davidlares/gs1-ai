@@ -96,7 +96,7 @@ GS1_AI_API_URL=https://ai.concilier.app/api
 ## Basic Usage
 
 ```php
-use Davidlares\GS1\DTO\Identifier;
+use Davidlares\GS1\Facades\Identifier;
 
 $identifier = Identifier::find('01');
 ```
