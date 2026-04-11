@@ -1,9 +1,9 @@
 <?php
 
-namespace Davidlares\GS1\Tests;
+namespace Davidlares\GS1\AI\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use Davidlares\GS1\GS1AIServiceProvider;
+use Davidlares\GS1\AI\GS1AIServiceProvider;
 
 class TestCase extends Orchestra
 {

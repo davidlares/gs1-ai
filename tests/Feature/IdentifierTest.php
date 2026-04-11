@@ -1,11 +1,11 @@
 <?php 
 
-namespace Davidlares\GS1\Tests\Feature;
+namespace Davidlares\GS1\AI\Tests\Feature;
 
-use Davidlares\GS1\DTO\Identifier as IdentifierDTO;
-use Davidlares\GS1\Facades\Identifier;
+use Davidlares\GS1\AI\DTO\Identifier as IdentifierDTO;
+use Davidlares\GS1\AI\Facades\Identifier;
+use Davidlares\GS1\AI\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Davidlares\GS1\Tests\TestCase;
 
 class IdentifierTest extends TestCase
 {

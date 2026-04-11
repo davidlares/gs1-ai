@@ -1,6 +1,6 @@
 <?php
 
-namespace Davidlares\GS1\Console;
+namespace Davidlares\GS1\AI\Console;
 
 use Illuminate\Console\Command;
 

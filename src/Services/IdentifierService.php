@@ -1,10 +1,10 @@
 <?php 
 
-namespace Davidlares\GS1\Services;
+namespace Davidlares\GS1\AI\Services;
 
-use Davidlares\GS1\Contracts\ClientInterface;
+use Davidlares\GS1\AI\Contracts\ClientInterface;
 use Illuminate\Support\Facades\Cache;
-use Davidlares\GS1\DTO\Identifier;
+use Davidlares\GS1\AI\DTO\Identifier;
 
 class IdentifierService
 {

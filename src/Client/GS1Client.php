@@ -1,8 +1,8 @@
 <?php 
 
-namespace Davidlares\GS1\Client;
+namespace Davidlares\GS1\AI\Client;
 
-use Davidlares\GS1\Contracts\ClientInterface;
+use Davidlares\GS1\AI\Contracts\ClientInterface;
 use Illuminate\Support\Facades\Http;
 use Exception;
 

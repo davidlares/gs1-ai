@@ -1,9 +1,9 @@
 <?php
 
-namespace Davidlares\GS1\Facades;
+namespace Davidlares\GS1\AI\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Davidlares\GS1\GS1AI;
+use Davidlares\GS1\AI\GS1;
 
 /**
  * @method static getIdentifier(string $identifier)
@@ -12,6 +12,6 @@ class Identifier extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return GS1AI::class;
+        return GS1::class;
     }
 }

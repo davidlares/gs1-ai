@@ -11,16 +11,16 @@
     ],
     "autoload": {
         "psr-4": {
-            "Davidlares\\GS1\\": "src/"
+            "Davidlares\\GS1\\AI\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Davidlares\\GS1\\GS1AIServiceProvider"
+                "Davidlares\\GS1\\AI\\GS1AIServiceProvider"
             ],
             "aliases": {
-                "Identifier": "Davidlares\\GS1\\Facades\\Identifier"
+                "Identifier": "Davidlares\\GS1\\AI\\Facades\\Identifier"
             }
         }
     },
@@ -28,13 +28,12 @@
         "php": "^8.2",
         "illuminate/support": "^10.0|^11.0|^12.0"
     },
-    
     "require-dev": {
         "orchestra/testbench": "^9.0"
     },
     "autoload-dev": {
         "psr-4": {
-            "Davidlares\\GS1\\Tests\\": "tests/"
+            "Davidlares\\GS1\\AI\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "stable"

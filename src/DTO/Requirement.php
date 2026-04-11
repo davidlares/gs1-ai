@@ -1,6 +1,6 @@
 <?php 
 
-namespace Davidlares\GS1\DTO;
+namespace Davidlares\GS1\AI\DTO;
 
 class Requirement
 {

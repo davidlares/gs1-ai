@@ -1,10 +1,10 @@
 <?php
 
-namespace Davidlares\GS1;
+namespace Davidlares\GS1\AI;
 
-use Davidlares\GS1\Services\IdentifierService;
+use Davidlares\GS1\AI\Services\IdentifierService;
 
-class GS1AI
+class GS1
 {
     protected $service;
 

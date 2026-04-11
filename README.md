@@ -96,7 +96,7 @@ GS1_AI_API_URL=https://ai.concilier.app/api
 ## Basic Usage
 
 ```php
-use Davidlares\GS1\Facades\Identifier;
+use Davidlares\GS1\AI\Facades\Identifier;
 
 $identifier = Identifier::find('01');
 ```
@@ -267,6 +267,12 @@ Example setup:
 
 ```bash
 composer require --dev orchestra/testbench
+```
+
+Run:
+
+```bash
+vendor/bin/phpunit .\tests\
 ```
 
 ## Error Handling

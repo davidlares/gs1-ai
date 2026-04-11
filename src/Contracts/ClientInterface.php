@@ -1,6 +1,6 @@
 <?php 
 
-namespace Davidlares\GS1\Contracts;
+namespace Davidlares\GS1\AI\Contracts;
 
 interface ClientInterface 
 {
