@@ -82,7 +82,7 @@ php artisan gs1-ai:install
 This will publish the configuration file:
 
 ```bash
-config/gs1.php
+config/gs1-ai.php
 ```
 
 ### Configuration

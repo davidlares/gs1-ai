@@ -13,7 +13,7 @@ class InstallCommand extends Command
     {
         // publishing the configuration file
         $this->call('vendor:publish', [
-            '--tag' => 'gs1-config',
+            '--tag' => 'gs1-ai-config',
         ]);
         // then
         $this->info('Packaged installed successfully');

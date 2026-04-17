@@ -36,6 +36,6 @@ class GS1AIServiceProvider extends ServiceProvider
         if($this->app->runningInConsole()) 
             $this->commands([InstallCommand::class]);
         // config publishable
-        $this->publishes([__DIR__. '/../config/gs1-ai.php' => config_path('gs1-ai.php')], 'gs1-config');
+        $this->publishes([__DIR__. '/../config/gs1-ai.php' => config_path('gs1-ai.php')], 'gs1-ai-config');
     }
 }
